@@ -4,15 +4,19 @@ from tastypie import fields
 from tastypie.authentication import BasicAuthentication,ApiKeyAuthentication,SessionAuthentication,DigestAuthentication,OAuthAuthentication
 from tastypie.authorization import Authorization
 from django.contrib.auth.models import User
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 class UserResource(ModelResource):
 	class Meta:
+		filtering={
+			'username':('exact','startswith')
+		}
 		queryset=User.objects.all()
 		resource_name='user'
 		#excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser'] 	#specify which fields to exclude
 		fields = ['username', 'first_name', 'last_name', 'last_login']  			#or use this
 		allowed_methods = ['get']   #allowed http methods
-		authentication=SessionAuthentication()
+		# authentication=ApiKeyAuthentication()
 
 class EntryResource(ModelResource):
 	# Maps `Entry.user` to a Tastypie `ForeignKey` field named `user`,
