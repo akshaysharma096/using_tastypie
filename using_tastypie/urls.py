@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import url, include
+from tastypie.api import Api
+from django.conf.urls import url, include
+from user.api import EntryResource
+
+entry_resource = EntryResource()
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'^blog/', include('user.urls')),
+    url(r'^api/', include(entry_resource.urls)),
 ]
