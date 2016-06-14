@@ -7,7 +7,7 @@ from tastypie.models import create_api_key
 models.signals.post_save.connect(create_api_key, sender=User)
 
 class Entry(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,related_name='entries')
     pub_date = models.DateTimeField(default=now)
     title = models.CharField(max_length=200)
     slug = models.SlugField(null=True, blank=True)
