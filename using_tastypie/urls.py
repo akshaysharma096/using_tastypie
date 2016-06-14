@@ -26,5 +26,6 @@ v1_api.register(EntryResource())
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^auth/',include('user.urls')),
     url(r'^api/', include(v1_api.urls)),
 ]

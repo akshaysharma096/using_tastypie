@@ -14,7 +14,7 @@ class UserResource(ModelResource):
 		#excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser'] 	#specify which fields to exclude
 		fields = ['username', 'first_name', 'last_name', 'last_login']  			#or use this
 		allowed_methods = ['get']   #allowed http methods
-		# authentication=ApiKeyAuthentication()
+		authentication=ApiKeyAuthentication()
 		filtering = {
             'username': ['exact'],
         }
